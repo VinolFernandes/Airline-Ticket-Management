@@ -6,7 +6,19 @@ const flightdetails  = require("../../controller/Flight/flightcontroller");
 
 router.post("/create", async (req, res) => {
     try {
-     const pro=   await authmiddleware.auth(req, res);
+        const pro = await authmiddleware.auth(req, res);
+        await flightdetails.create(req, res);
+        console.log(req.body);
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+})
+
+router.post("/schedule", async (req, res) => {
+    try {
+        const pro = await authmiddleware.auth(req, res);
+        await flightdetails.schedule(req, res);
         console.log(req.body);
     } catch (e) {
         console.log(e);
