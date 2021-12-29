@@ -1,3 +1,4 @@
+<%- include('./sidebar') %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,18 +22,60 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+        <style>
+            .inputstyle{
+                margin-top: 30px;
+            }
+        </style>
 </head>
 <body>
 
-<div style="margin-left: 100px;">
+<div style="margin-left: 450px;">
 
+
+    <form>
+        
+        <div class="row" style="margin-top: 50px;">
+            <h5>Search By Location</h5>
+            <div class="col"  style="margin-right: -250px;">
+            <input type="text" class="form-control" style="width:300px; " name="fromloc" id="" value="" placeholder="From Location">
+
+           
+              
+            </div>
+            <div class="col">
+                <input type="text" name="toloc"  style="width:300px" id="" value="" placeholder="To Location" class="form-control">
+            </div>
+        </div>
+        
+        <div class="row" style="margin-top: 50px;">
+            <h5>Search By Date</h5>
+            <div class="col" style="margin-right: -250px;">
+                <input type="date" name="depdate"  class="form-control" style="width:300px;" id="" value="">
+        
+        
+        
+            </div>
+            <div class="col">
+            <input type="date" name="arrdate"  class="form-control" style="width:300px;" id="" value="">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="float: right; margin-right: 300px; margin-top: 20px; margin-bottom: 20px;">Search</button>
+    </form>
+    <%/*%>
     <form >
-     <label for="">From Loc: </label><input type="text" name="fromloc" id="" value="" placeholder="Enter From Location">
+    <input type="text" name="fromloc" id="" value="" placeholder="Enter From Location">
     <label for="">To Loc: </label><input type="text" name="toloc" id="" value="" placeholder="Enter To Location">
+    
+    <div class="inputstyle">
     <label for="">From:</label><input type="date" name="depdate" id="" value="">
     <label for="">To:</label><input type="date" name="arrdate" id="" value="">
+    </div>
     <button type="submit" class="btn btn-primary">Search</button>
     </form>
+    <%*/%>
     <% for( var i=0;i<flight.length;i++){%>
 <div class="card" style="width: 800px; margin-top: 20px;">
     <div class="card-body" style="background-color:antiquewhite">
@@ -42,10 +85,10 @@
             To Location:<%-flight[i].toloc%>
         </h6>
         <h6 class="card-subtitle mb-2 text-muted">
-            Departure Time: <%-flight[i].depdate%> 
+            Departure Time: <%-flight[i].depdate.toLocaleString()%> 
         </h6>
         <h6 class="card-subtitle mb-2 text-muted">
-         Arrival Time:   <%-flight[i].arrdate%>
+         Arrival Time:   <%-flight[i].arrdate.toLocaleString()%>
                 
         </h6>
 
@@ -54,12 +97,14 @@
     </div>
 </div>
 
+
 <%}%>
 
 
 
 
 </div>
+
 
 <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
@@ -100,6 +145,7 @@
         
     </div>
 </div>
+
 
 <script>
 

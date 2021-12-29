@@ -121,12 +121,31 @@ module.exports.ticket = async (req, res) => {
         const date = new Date(req.query.date);
         console.log(123, req.body.cid, req.query.date)
         console.log(date);
-        const flight = await pool.query("select * from ticket_info where  cid=$1 ", [req.body.cid])
-        console.log(flight.rows)
-
-        const task = flight.rows.map(e => e.fdate == date);
         
-        console.log(111, task);
+        const flight = await pool.query("select * from ticket_info where  cid=$1 and fid=$2 ", [req.body.cid,req.query.fid])
+        // console.log(11, (flight.rows));
+
+        // const d = date.getTime();
+        // const d2 = flight.rows[0].fdate.getTime();
+        // console.log(d, d2);
+        // console.log(222, d == d2);
+
+        // console.log(d - d2);
+
+        var task = [];
+        for (var i = 0; i < flight.rowCount; i++) {
+            if (date.getFullYear() == flight.rows[i].fdate.getFullYear() && date.getMonth() == flight.rows[i].fdate.getMonth() && date.getDate() == flight.rows[i].fdate.getDate()) {
+                console.log(111, date.getFullYear() == flight.rows[0].fdate.getFullYear() && date.getMonth() == flight.rows[0].fdate.getMonth() && date.getDate() == flight.rows[0].fdate.getDate())
+                task.push(flight.rows[i]);
+            }
+        }
+        
+        console.log(222, task);
+        
+
+        // const task = flight.rows.map(e => e.fdate.toLocaleDateString() == date.toLocaleDateString());
+        
+        // console.log(111111, task);
         return flight.rows;
 
 

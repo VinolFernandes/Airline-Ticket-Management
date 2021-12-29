@@ -2,8 +2,8 @@ body
 {
   margin:0;
   padding:0;
-  background: url(login.jpg);
-  background-size: auto;
+  background: url('https://media2.giphy.com/media/l2Sq87bt4GOdAnlGo/giphy.gif');
+  background-size: cover;
   background-position: cover;
   font-family: helvetica;
 }
