@@ -6,6 +6,7 @@ const autocontroller=require("../../controller/Auth/authcontroller")
 router.get("/",(req,res)=>res.render("index.ejs",{layout:false}))
 router.post("/register", async (req, res) => {
     try {
+        console.log(22222)
         await autocontroller.register(req, res);
     } catch (err) {
         console.log(err);

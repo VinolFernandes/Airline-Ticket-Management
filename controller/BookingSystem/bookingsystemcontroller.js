@@ -24,16 +24,15 @@ module.exports.find = async (req, res) => {
             return flight.rows;
         }
 
-        if (query.fromloc != "" && query.toloc != "" && query.depdate == '') {
-            let floc = query.fromloc.toLowerCase();
-            let tloc = query.toloc.toLowerCase();
+        if (query.depdate != "" && query.arrdate != "" && query.fromloc == '') {
+            
 
-            console.log(floc)
-            console.log(tloc);
+            // console.log(floc)
+            // console.log(tloc);
 
             const date = new Date();
 
-            const flight = await pool.query("Select f.fid,f.fromloc,f.toloc,f.airlinename,fd.depdate from flight f,flight_details fd where fromloc=$1 and toloc=$2 and fd.fid=f.fid and fd.depdate>$3 ", [floc, tloc, date])
+            const flight = await pool.query("Select f.fid,f.fromloc,f.toloc,f.airlinename,fd.depdate from flight f,flight_details fd where depdate>=$1 and arrdate<=$2 and fd.fid=f.fid  ", [query.depdate,query.arrdate])
             console.log(flight.rows);
             return flight.rows;
         }
